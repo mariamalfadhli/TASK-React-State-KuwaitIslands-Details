@@ -2,12 +2,12 @@ import { useState } from "react";
 import islands from "../data/islands";
 import Island from "./Island";
 
-export default function IslandList() {
+export default function IslandList({ setIsland, island }) {
   const [query, setQuery] = useState("");
 
   let islandsArray = islands
     .filter((island) => island.name.toLowerCase().includes(query.toLowerCase()))
-    .map((island) => <Island island={island} />);
+    .map((island) => <Island setIsland={setIsland} island={island} />);
   return (
     <div>
       <input
@@ -15,7 +15,7 @@ export default function IslandList() {
         placeholder="Search for an island"
         onChange={(event) => setQuery(event.target.value)}
       />
-      <div className="islandList">{islandsArray}</div>
+      <div classsName="islandList">{islandsArray}</div>
     </div>
   );
 }
